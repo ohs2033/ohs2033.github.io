@@ -1,0 +1,843 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Java9 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="java8.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="java8.html">
+            
+                <a href="java8.html">
+            
+                    
+                    Java8
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.2" data-path="java9.html">
+            
+                <a href="java9.html">
+            
+                    
+                    Java9
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Java9</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>&#xCD9C;&#xCC98; : <a href="http://www.popit.kr/%EB%82%98%EB%A7%8C-%EB%AA%A8%EB%A5%B4%EA%B3%A0-%EC%9E%88%EB%8D%98-java9-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%B3%B4%EA%B8%B0/" target="_blank">http://www.popit.kr/%EB%82%98%EB%A7%8C-%EB%AA%A8%EB%A5%B4%EA%B3%A0-%EC%9E%88%EB%8D%98-java9-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%B3%B4%EA%B8%B0/</a></p>
+<h1 id="i-java-&#xD50C;&#xB7AB;&#xD3FC;-&#xBAA8;&#xB4C8;-&#xC2DC;&#xC2A4;&#xD15C;java-platform-module-system">I. Java &#xD50C;&#xB7AB;&#xD3FC; &#xBAA8;&#xB4C8; &#xC2DC;&#xC2A4;&#xD15C;(Java Platform Module System)</h1>
+<p>&#xA0; <strong>Jigsaw(&#xC9C1;&#xC18C;) &#xD504;&#xB85C;&#xC81D;&#xD2B8;</strong> &#xAE30;&#xBC18;&#xD558;&#xC5D0; &#xAC1C;&#xBC1C;&#xB41C; <code>Java9 Module System</code>&#xC740; &#xC548;&#xC815;&#xC801;&#xC778; &#xAD6C;&#xC131;&#xACFC; &#xAC15;&#xB825;&#xD558;&#xACE0; &#xC720;&#xC5F0;&#xD55C; &#xCEA1;&#xC290;&#xD654;&#xB97C; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;&#xB294; &#xAD6C;&#xCCB4;&#xC801;&#xC778; &#xBAA9;&#xD45C;&#xB97C; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC751;&#xC6A9; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xAC1C;&#xBC1C;&#xC790;, &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC; &#xAC1C;&#xBC1C;&#xC790;&#xB294; &#xB610;&#xB294; Java SE Platform &#xAC1C;&#xBC1C;&#xC790;&#xB294; &#xD655;&#xC7A5; &#xAC00;&#xB2A5;&#xD55C; &#xD50C;&#xB7AB;&#xD3FC;&#xC744; &#xB9CC;&#xB4E4;&#xACE0; &#xD50C;&#xB7AB;&#xD3FC; &#xBB34;&#xACB0;&#xC131;&#xC744; &#xB192;&#xC774;&#xBA70; &#xC131;&#xB2A5;&#xC744; &#xD5A5;&#xC0C1; &#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xB2E4;.</p>
+<h3 id="module&#xC774;&#xB780;">Module&#xC774;&#xB780;?</h3>
+<p>&#xBAA8;&#xB4C8;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xCF54;&#xB4DC;&#xC640; &#xB370;&#xC774;&#xD130;&#xB85C; &#xB098;&#xB204;&#xC5B4;&#xC11C; &#xC124;&#xBA85;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<ul>
+<li>code : type&#xC744; &#xD3EC;&#xD568;&#xD558;&#xACE0; &#xC788;&#xB294; packages. ( Java class&#xB4E4;, Interface&#xB4E4; )</li>
+<li>data : resources&#xC640; &#xB2E4;&#xB978; &#xC885;&#xB958;&#xC758; &#xC815;&#xC801;&#xC815;&#xBCF4;.</li>
+</ul>
+<p>&#xAC04;&#xB2E8;&#xD788; &#xB9D0;&#xD558;&#xBA74;,</p>
+<ul>
+<li>Class&#xB294; field&#xC640; method&#xB97C; &#xD3EC;&#xD568;&#xD55C;&#xB2E4;.</li>
+<li>Package&#xB294; Class&#xC640; Enum, Interface, &#xC124;&#xC815;&#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xD3EC;&#xD568;&#xD55C;&#xB2E4;.</li>
+<li>Module&#xC740; Package&#xC640; &#xB2E4;&#xB978; &#xB370;&#xC774;&#xD130; &#xC790;&#xC6D0;&#xC744; &#xD3EC;&#xD568;&#xD55C;&#xB2E4;.</li>
+</ul>
+<p>Module &#xC2DC;&#xC2A4;&#xD15C; &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC740; Module&#xC774; &#xB2E4;&#xB978; Module&#xC744; &#xC77D;&#xACE0; &#xB2E4;&#xB978; Module&#xC5D0;&#xC11C; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xC81C;&#xC5B4;&#xD558;&#xB294; &#xAC00;&#xB3C5;&#xC131;&#xACFC; &#xC811;&#xADFC;&#xC131;&#xC744; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;. Module&#xC5D0;&#xB294; &#xC138; &#xC885;&#xB958;&#xAC00; &#xC788;&#xB2E4;.</p>
+<ol>
+<li>named module</li>
+<li>unnamed module</li>
+<li>automatic module</li>
+</ol>
+<p>Java&#xB294; runtime&#xC2DC;&#xC810;&#xC5D0; classpath&#xB97C; &#xAC80;&#xC0C9;&#xD558;&#xC5EC; &#xC11C;&#xBE44;&#xC2A4; &#xACF5;&#xAE09;&#xC790;&#xB97C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xB294; java.util.ServiceLoader &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;.</p>
+<h1 id="ii-&#xB3C4;&#xAD6C;tools">II. &#xB3C4;&#xAD6C;(Tools)</h1>
+<h2 id="1-jshell-&#x2013;-the-java-shell">1. Jshell &#x2013; The Java Shell</h2>
+<ul>
+<li>Java9&#xB294; &#xD14C;&#xC2A4;&#xD2B8; &#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xB098; main &#xBA54;&#xC18C;&#xB4DC;&#xC5C6;&#xC774; code snippets&#xC744; &#xC2E0;&#xC18D;&#xD558;&#xAC8C; &#xD14C;&#xC2A4;&#xD2B8; &#xD560; &#xC218; &#xC788;&#xB294; &#xB300;&#xD654;&#xC2DD; REP(Read-Eval-Print-Loop) &#xB3C4;&#xAD6C;&#xB97C; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;. </li>
+<li>&#xB530;&#xB77C;&#xC11C; &#xC6B0;&#xB9AC;&#xB294; Java &#xAE30;&#xB2A5;&#xC744; &#xC27D;&#xAC8C; &#xBC30;&#xC6B0;&#xAC70;&#xB098; &#xD3C9;&#xAC00;&#xD574; &#xBCFC; &#xC218; &#xC788;&#xB2E4;. </li>
+<li>&#xC774;&#xC81C; &#xC6B0;&#xB9AC;&#xB294; Code&#xD14C;&#xC2A4;&#xD2B8;&#xB97C; &#xC704;&#xD574;  java&#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xB97C; &#xB9CC;&#xB4E4;&#xAC70;&#xB098; <code>public static void main(String[] args)</code>&#xB97C; &#xC815;&#xC758;&#xD560; &#xD544;&#xC694;&#xAC00; &#xC5C6;&#xB2E4;. &#xC624;&#xC9C1; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD558;&#xACE0; &#xC989;&#xC2DC; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xB41C;&#xB2E4;.</li>
+</ul>
+<h2 id="2-&#xD1B5;&#xC77C;&#xB41C;-jvm-&#xB85C;&#xAE45;unified-jvm-logging">2. &#xD1B5;&#xC77C;&#xB41C; JVM &#xB85C;&#xAE45;(Unified JVM Logging)</h2>
+<p>Java9&#xB294; JVM&#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xC5D0; &#xB300;&#xD55C; &#xACF5;&#xD1B5; &#xB85C;&#xAE45; &#xC2DC;&#xC2A4;&#xD15C;&#xC744; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;. &#xD1B5;&#xD569;&#xB41C; JVM&#xB85C;&#xAE45;&#xC740; &#xBAA8;&#xB4E0; &#xB85C;&#xAE45; &#xC124;&#xC815;&#xC5D0; &#xB300;&#xD55C; &#xC0C8;&#xB85C;&#xC6B4; &#xBA85;&#xB839;&#xC904; &#xC635;&#xC158; <code>-Xlog</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBCF5;&#xC7A1;&#xD55C; &#xC218;&#xC900;&#xC758; JVM &#xAD6C;&#xC131;&#xC694;&#xC18C;&#xC5D0; &#xB300;&#xD55C; &#xADFC;&#xBCF8; &#xC6D0;&#xC778; &#xBD84;&#xC11D;&#xC744; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xAD6C;&#xC131;&#xD558;&#xAE30; &#xC26C;&#xC6B4; &#xC815;&#xBC00; &#xB3C4;&#xAD6C;&#xB97C; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;.</p>
+<p>Log&#xBA54;&#xC138;&#xC9C0;&#xB294; tag(os, gc, modules..)&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBD84;&#xB958;&#xB41C;&#xB2E4;.  &#xD558;&#xB098;&#xC758; &#xBA54;&#xC138;&#xC9C0;&#xB294;  &#xB2E4;&#xC218;&#xC758; tag(tag &#xC138;&#xD2B8;)&#xB97C; &#xAC00;&#xC9C8; &#xC218; &#xC788;&#xB2E4;.</p>
+<ul>
+<li>&#xB85C;&#xAE45; &#xB808;&#xBCA8; : error, warning, info, debug, trace, develop.</li>
+<li>3&#xAC00;&#xC9C0; &#xC720;&#xD615;&#xC758; Output&#xC81C;&#xACF5; : stdout, stderr, &#xB610;&#xB294; text file.</li>
+<li>&#xBA54;&#xC138;&#xC9C0;&#xB294; time, uptime, pid, tid, level, tags &#xB4F1;&#xC73C;&#xB85C; &#xAFB8;&#xBC00; &#xC218; &#xC788;&#xB2E4;.</li>
+</ul>
+<h2 id="3-html5-javadoc">3. HTML5 Javadoc</h2>
+<p>Javadoc&#xC740; HTML&#xD615;&#xC2DD;&#xC758; API&#xBB38;&#xC11C;&#xB97C; &#xC0DD;&#xC131; &#xD560; &#xC218; &#xC788;&#xB294;&#xB3C4;&#xAD6C;&#xC774;&#xB2E4;. &#xC774;&#xC804; &#xBC84;&#xC804;&#xC758; JDK&#xC5D0;&#xC11C;&#xB294; HTML 4.01 &#xD615;&#xC2DD;&#xC744; &#xC0AC;&#xC6A9;&#xD588;&#xC9C0;&#xB9CC; JDK9 Javadoc&#xC740; HTML5 markup&#xC744; 
+&#xC0DD;&#xC131;&#xD558;&#xACE0; &#xAC80;&#xC0C9; &#xAE30;&#xB2A5; &#xBC0F; Doclint&#xB97C; &#xD5A5;&#xC0C1; &#xC2DC;&#xCF30;&#xB2E4;.</p>
+<p>HTML5&#xB97C; &#xC9C0;&#xC6D0;&#xD558;&#xB294; JDK9&#xC5D0;&#xC11C;&#xB294;  -html5 parameter&#xB97C; &#xCD94;&#xAC00; &#xD558;&#xAE30;&#xB9CC; &#xD558;&#xBA74; &#xB41C;&#xB2E4;.</p>
+<pre><code class="lang-bash">&gt; javadoc-sourcepath<span class="hljs-string">&quot;E:\Eclipse Java 9\Java9HTML5Javadoc\src&quot;</span>com.javasampleapproach.html5doc<span class="hljs-_">-d</span>E:\home\html  -html5
+</code></pre>
+<ul>
+<li>Javadoc&#xBB38;&#xC11C;&#xC5D0;&#xC11C; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC694;&#xC18C;, tag&#xAC00; &#xC9C0;&#xC815;&#xB41C; &#xB2E8;&#xC5B4;&#xB098; &#xBB38;&#xAD6C;&#xB97C; &#xAC80;&#xC0C9;&#xD558;&#xB294;&#xB370; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xAC80;&#xC0C9;&#xC0C1;&#xC790;&#xB97C; &#xC0AC;&#xC774;&#xD2B8;&#xC0C1;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xAC80;&#xC0C9; &#xAE30;&#xB2A5;&#xC740; &#xB85C;&#xCEEC;&#xB85C; &#xAD6C;&#xD604;&#xB418;&#xBA70; &#xBAA8;&#xB4E0; &#xC11C;&#xBC84;&#xCE21; &#xC5F0;&#xC0B0; resources&#xC5D0; &#xC758;&#xC874;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</li>
+<li>Xdoclint&#xB294; Javadoc &#xC8FC;&#xC11D;&#xC758; &#xBB38;&#xC81C;&#xC810; ( &#xC608;: &#xC798;&#xBABB;&#xB41C; &#xCC38;&#xC870;,  &#xC811;&#xADFC;&#xC131; &#xBD80;&#xC871;, &#xC8FC;&#xC11D; &#xB204;&#xB77D;, &#xAD6C;&#xBB38;&#xC624;&#xB958; &#xBC0F; HTML&#xD0DC;&#xADF8; &#xB204;&#xB77D;) &#xC744; &#xAD8C;&#xC7A5; &#xAC80;&#xC0AC;&#xD55C;&#xB2E4;. </li>
+<li>&#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; <code>-Xdoclint</code>&#xB294; &#xD65C;&#xC131;&#xD654; &#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA70;, <code>Xdoclint:none</code>&#xC744; &#xD1B5;&#xD574;&#xC11C; &#xBE44;&#xD65C;&#xC131;&#xD654; &#xD560; &#xC218; &#xC788;&#xB2E4;.</li>
+</ul>
+<h1 id="iii-language-updates">III. Language Updates</h1>
+<h2 id="1-try-with-resources-&#xD5A5;&#xC0C1;">1. try-with-resources &#xD5A5;&#xC0C1;</h2>
+<p>Java7 &#xC740; try-with-resources &#xAD6C;&#xBB38;&#xC73C;&#xB85C; &#xC120;&#xC5B8;&#xB41C; resource&#xB97C; &#xB2EB;&#xC744; &#xC218;(&#xC885;&#xB8CC;) &#xC788;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xC811;&#xADFC; &#xBC29;&#xC2DD;&#xC744; &#xB3C4;&#xC785; &#xD588;&#xB2E4;. &#xADF8; &#xD6C4;&#xC5D0; Java9&#xC758; try-with-resources&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD558;&#xB294; &#xD5A5;&#xC0C1;&#xB41C; &#xBC29;&#xBC95;&#xC744; &#xB9CC;&#xB4E4;&#xC5C8;&#xACE0;, &#xC774;&#xC81C; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xCF54;&#xB4DC;&#xB97C; &#xAE54;&#xB054;&#xD558;&#xACE0; &#xBA85;&#xD655;&#xD558;&#xAC8C; &#xC720;&#xC9C0; &#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<pre><code class="lang-java">
+       <span class="hljs-comment">// BufferedReader is declared outside try() block</span>
+        BufferedReaderbr=newBufferedReader(newFileReader(<span class="hljs-string">&quot;C://readfile/input.txt&quot;</span>));
+
+        <span class="hljs-comment">// Java 9 make it simple</span>
+        <span class="hljs-keyword">try</span>(br){
+            Stringline;
+            <span class="hljs-keyword">while</span>(<span class="hljs-keyword">null</span>!=(line=br.readLine())){
+                <span class="hljs-comment">// processing each line of file</span>
+                System.out.println(line);
+            }
+        } <span class="hljs-keyword">catch</span>(IOExceptione){
+            e.printStackTrace();
+        }
+       <span class="hljs-comment">// BufferedReader is declared outside try() block</span>
+        BufferedReaderbr=newBufferedReader(newFileReader(<span class="hljs-string">&quot;C://readfile/input.txt&quot;</span>));
+
+        <span class="hljs-comment">// Java 9 make it simple</span>
+        <span class="hljs-keyword">try</span>(br){
+            Stringline;
+            <span class="hljs-keyword">while</span>(<span class="hljs-keyword">null</span>!=(line=br.readLine())){
+                <span class="hljs-comment">// processing each line of file</span>
+                System.out.println(line);
+            }
+        } <span class="hljs-keyword">catch</span>(IOExceptione){
+            e.printStackTrace();
+        }
+</code></pre>
+<h2 id="2-private-&#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;-&#xBA54;&#xC18C;&#xB4DC;-private-interface-method">2. private &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; &#xBA54;&#xC18C;&#xB4DC; (Private Interface Method)</h2>
+<ul>
+<li>Java8&#xC740; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xC5D0; default method &#xBC0F; static method &#xB77C;&#xB294; &#xB450; &#xAC00;&#xC9C0; &#xC0C8;&#xB85C;&#xC6B4; &#xAE30;&#xB2A5;&#xC744; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;.</li>
+<li>&#xD558;&#xC9C0;&#xB9CC; &#xC774;&#xAC83;&#xC740; &#xC5EC;&#xC804;&#xD788; &#xC6B0;&#xB9AC;&#xB97C; &#xBD88;&#xD3B8;&#xD558;&#xAC8C; &#xB9CC;&#xB4DC;&#xB294;&#xB370; &#xC65C;&#xB0D0;&#xD558;&#xBA74; &#xB2E8;&#xC9C0; &#xD2B9;&#xC815; &#xAE30;&#xB2A5;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xB0B4;&#xBD80;method &#xC77C;&#xBFD0;&#xC778;&#xB370;&#xB3C4; &#xC678;&#xBD80;&#xC5D0; &#xACF5;&#xAC1C;&#xB418;&#xB294; public method&#xB85C; &#xB9CC;&#xB4E4;&#xC5C8;&#xC5B4;&#xC57C; &#xD588;&#xB2E4;.</li>
+<li>interface&#xB97C; &#xAD6C;&#xD604;&#xD558;&#xB294; &#xB2E4;&#xB978; interface &#xB610;&#xB294; class&#xAC00; &#xD574;&#xB2F9; method&#xC5D0; &#xC561;&#xC138;&#xC2A4;&#xD558;&#xAC70;&#xB098; &#xC0C1;&#xC18D; &#xD560;&#xC218; &#xC788;&#xB294;&#xAC83;&#xC744; &#xC6D0;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</li>
+<li>Java9 Private Interface Method&#xB294; interface&#xC5D0; <code>private method</code> &#xBC0F; <code>private static method</code>&#xB77C;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xAE30;&#xB2A5;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xC5EC; &#xBB38;&#xC81C;&#xB97C; &#xD574;&#xACB0;&#xD55C;&#xB2E4;. &#xC774;&#xC81C; &#xC911;&#xBCF5; &#xCF54;&#xB4DC;&#xB97C; &#xD53C;&#xD558;&#xACE0; interface&#xC5D0; &#xB300;&#xD55C; &#xCEA1;&#xC290;&#xD654;&#xB97C; &#xC720;&#xC9C0; &#xD560; &#xC218; &#xC788;&#xB2E4;.</li>
+</ul>
+<pre><code class="lang-Java">
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMyInterface</span></span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span><span class="hljs-params">(String arg)</span></span>{
+        <span class="hljs-comment">// do something</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span><span class="hljs-params">(Integer arg)</span></span>{
+        <span class="hljs-comment">// do something</span>
+    }
+}
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMyInterface</span></span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span><span class="hljs-params">(String arg)</span></span>{
+        <span class="hljs-comment">// do something</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span><span class="hljs-params">(Integer arg)</span></span>{
+        <span class="hljs-comment">// do something</span>
+    }
+}
+</code></pre>
+<h2 id="3-&#xB2E4;&#xC774;&#xC544;&#xBAAC;&#xB4DC;-&#xC5F0;&#xC0B0;&#xC790;diamond-operator">3. &#xB2E4;&#xC774;&#xC544;&#xBAAC;&#xB4DC; &#xC5F0;&#xC0B0;&#xC790;(Diamond Operator)</h2>
+<p>Java7 &#xC5D0;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xBCF4;&#xB2E4; &#xC77D;&#xAE30; &#xC27D;&#xAC8C; &#xB9CC;&#xB4DC;&#xB294;&#xB370; &#xB3C4;&#xC6C0;&#xB418;&#xB294; Diamond Operator&#xB77C;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xAE30;&#xB2A5;&#xC774; &#xC788;&#xC5C8;&#xC9C0;&#xB9CC; &#xC775;&#xBA85; &#xD074;&#xB798;&#xC2A4;(Anonymous Inner Class)&#xC5D0;&#xB294; &#xC81C;&#xD55C;&#xC801;&#xC774;&#xC5C8;&#xB2E4;. &#x2018;&lt;&gt;&#x2019;(&#xB2E4;&#xC774;&#xBAAC;&#xB4DC; &#xC5F0;&#xC0B0;&#xC790;)&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD558;&#xB294; &#xACBD;&#xC6B0; &#xC775;&#xBA85; &#xD074;&#xB798;&#xC2A4;&#xC640; &#xD568;&#xAED8; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xB2E4;. ( <code>Compile Error</code>&#xAC00; &#xBC1C;&#xC0DD; )</p>
+<pre><code class="lang-Java">
+MyHandler&lt;Integer&gt; intHandler = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-number">10</span>){<span class="hljs-comment">// Anonymous Class };</span>
+MyHandler&lt;?&gt; handler = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-string">&quot;Onehundred&quot;</span>){<span class="hljs-comment">// Anonymous Class };</span>
+<span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+MyHandler&lt;Integer&gt; intHandler = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-number">10</span>){<span class="hljs-comment">// Anonymous Class };</span>
+MyHandler&lt;?&gt; handler = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-string">&quot;Onehundred&quot;</span>){<span class="hljs-comment">// Anonymous Class };</span>
+Java <span class="hljs-number">9</span>&#xB294; &#xC775;&#xBA85; &#xD074;&#xB798;&#xC2A4;&#xC5D0; &#xB300;&#xD55C; Diamond Operator&#xB97C; &#xD5C8;&#xC6A9;&#xD55C;&#xB2E4;.
+Java
+
+MyHandler&lt;Integer&gt; intHandler = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-number">1</span>){
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-comment">// handling code...</span>
+    }
+};
+
+MyHandler&lt;? extends Integer&gt; intHandler1 = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-number">10</span>){
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-comment">// handling code...</span>
+    }
+};
+
+MyHandler&lt;?&gt; handler = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-string">&quot;One hundred&quot;</span>){
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-comment">// handling code...</span>
+    }
+};
+
+MyHandler&lt;Integer&gt; intHandler = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-number">1</span>){
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-comment">// handling code...</span>
+    }
+};
+
+MyHandler&lt;? extends Integer&gt; intHandler1 = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-number">10</span>){
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-comment">// handling code...</span>
+    }
+};
+
+MyHandler&lt;?&gt; handler = <span class="hljs-keyword">new</span> MyHandler&lt;&gt;(<span class="hljs-string">&quot;One hundred&quot;</span>){
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-comment">// handling code...</span>
+    }
+};
+</code></pre>
+<h1 id="iv-&#xC0C8;&#xB85C;&#xC6B4;-core-libraries">IV. &#xC0C8;&#xB85C;&#xC6B4; Core Libraries</h1>
+<h2 id="1-&#xD504;&#xB85C;&#xC138;&#xC2A4;-api-process-api">1. &#xD504;&#xB85C;&#xC138;&#xC2A4; API (Process API)</h2>
+<p>&#xD504;&#xB85C;&#xC138;&#xC2A4; &#xAC80;&#xC0C9;&#xC744; &#xC704;&#xD55C; &#xC0C8;&#xB85C;&#xC6B4; &#xBC29;&#xBC95; :  Java9 <code>Process API</code>&#xB85C; &#xBAA8;&#xB4E0; &#xD504;&#xB85C;&#xC138;&#xC2A4;, &#xD604;&#xC7AC; &#xD504;&#xB85C;&#xC138;&#xC2A4;, &#xD558;&#xC704; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xBC0F; &#xC885;&#xB8CC;&#xB41C; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC815;&#xBCF4;&#xB97C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<pre><code class="lang-Java">
+<span class="hljs-comment">// current Process</span>
+ProcessHandle processHandle = ProcessHandle.current();
+
+processHandle.getPid();
+processHandle.isAlive();
+processHandle.children().count();
+processHandle.supportsNormalTermination();
+
+ProcessHandle.InfoprocessInfo = processHandle.info();
+
+processInfo.arguments();
+processInfo.command();
+processInfo.totalCpuDuration();
+processInfo.user();
+
+<span class="hljs-comment">// all Processes</span>
+Stream&lt;ProcessHandle&gt; processStream = ProcessHandle.allProcesses();
+
+<span class="hljs-comment">// destroy Process</span>
+processHandle.destroy();
+
+<span class="hljs-comment">// current Process</span>
+ProcessHandle processHandle = ProcessHandle.current();
+
+processHandle.getPid();
+processHandle.isAlive();
+processHandle.children().count();
+processHandle.supportsNormalTermination();
+
+ProcessHandle.InfoprocessInfo = processHandle.info();
+
+processInfo.arguments();
+processInfo.command();
+processInfo.totalCpuDuration();
+processInfo.user();
+
+<span class="hljs-comment">// all Processes</span>
+Stream&lt;ProcessHandle&gt; processStream = ProcessHandle.allProcesses();
+
+<span class="hljs-comment">// destroy Process</span>
+processHandle.destroy();
+</code></pre>
+<h2 id="2-&#xD50C;&#xB7AB;&#xD3FC;-&#xB85C;&#xAE45;-api-&#xBC0F;-&#xC11C;&#xBE44;&#xC2A4;-platform-logging-api-and-service">2. &#xD50C;&#xB7AB;&#xD3FC; &#xB85C;&#xAE45; API &#xBC0F; &#xC11C;&#xBE44;&#xC2A4; (Platform Logging API and Service)</h2>
+<p>Java9&#xB294; &#xD50C;&#xB7AB;&#xD3FC; &#xD074;&#xB798;&#xC2A4;&#xAC00; &#xBA54;&#xC138;&#xC9C0;&#xB97C; &#xAE30;&#xB85D;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xCD5C;&#xC18C;&#xD55C;&#xC758; &#xB85C;&#xAE45; API&#xC640; &#xD574;&#xB2F9; &#xBA54;&#xC138;&#xC9C0;&#xC758; &#xC0AC;&#xC6A9;&#xC790;&#xB97C; &#xC704;&#xD55C; &#xC11C;&#xBE44;&#xC2A4; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB97C; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;. </p>
+<p><code>LoggerFinder</code>&#xC758; &#xAD6C;&#xD604;&#xC740; &#xC2DC;&#xC2A4;&#xD15C; &#xD074;&#xB798;&#xC2A4; &#xB85C;&#xB354;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; <code>java.util.ServiceLoader</code> API&#xC758; &#xB3C4;&#xC6C0;&#xC73C;&#xB85C; &#xB85C;&#xB4DC; &#xB41C;&#xB2E4;. &#xC774; &#xAD6C;&#xD604;&#xC744; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158; / &#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C;&#xB294; <code>java.util.logging</code> &#xB610;&#xB294; &#xBC31;&#xC5D4;&#xB4DC;&#xB97C; &#xAD6C;&#xC131;&#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xC790;&#xCCB4; &#xC678;&#xBD80; &#xB85C;&#xAE45; &#xBC31;&#xC5D4;&#xB4DC;&#xB97C; &#xC5F0;&#xACB0; &#xD560; &#xC218; &#xC788;&#xB2E4;. </p>
+<p><code>LoggerFinder</code>&#xAC00; return&#xD560; Logger&#xB97C; &#xC54C; &#xC218; &#xC788;&#xB3C4;&#xB85D; LoggerFinder&#xC5D0; &#xD074;&#xB798;&#xC2A4; &#xC774;&#xB984; &#xB610;&#xB294; &#xD2B9;&#xC815; Logger&#xC640; &#xAD00;&#xB828;&#xB41C; &#xBAA8;&#xB4C8;&#xC744; &#xC804;&#xB2EC;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<p>&#xB9CC;&#xC57D; &#xAD6C;&#xCCB4;&#xC801;&#xC778; &#xAD6C;&#xD604;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; JDK &#xAE30;&#xBCF8; LoggerFinder&#xAD6C;&#xD604; ( <code>java.util.logging &#x2013; java.logging</code> &#xBAA8;&#xB4C8;&#xC548;&#xC758; )&#xC774; &#xC0AC;&#xC6A9;&#xB418;&#xBA70; &#xB530;&#xB77C;&#xC11C; &#xB85C;&#xADF8; &#xBA54;&#xC138;&#xC9C0;&#xB294; <code>java.util.logging.Logger</code>&#xB85C; &#xB77C;&#xC6B0;&#xD305;&#xB41C;&#xB2E4;.</p>
+<pre><code class="lang-Java">
+<span class="hljs-keyword">package</span> java.lang;
+...
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">System</span> </span>{
+    System.<span class="hljs-function">Logger <span class="hljs-title">getLogger</span><span class="hljs-params">(String name)</span> </span>{ ... }
+    System.<span class="hljs-function">Logger <span class="hljs-title">getLogger</span><span class="hljs-params">(String name, ResourceBundle bundle)</span> </span>{ ... }
+}
+
+
+<span class="hljs-keyword">package</span> java.lang;
+...
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">System</span> </span>{
+    System.<span class="hljs-function">Logger <span class="hljs-title">getLogger</span><span class="hljs-params">(String name)</span> </span>{ ... }
+    System.<span class="hljs-function">Logger <span class="hljs-title">getLogger</span><span class="hljs-params">(String name, ResourceBundle bundle)</span> </span>{ ... }
+}
+</code></pre>
+<h2 id="3-completablefuture-api-&#xAC15;&#xD654;-enhancements-">3. CompletableFuture API &#xAC15;&#xD654;( Enhancements )</h2>
+<ul>
+<li>Java Future&#xB97C; &#xAC1C;&#xC120;&#xD558;&#xAE30; &#xC704;&#xD574; Java 8&#xC740; CompletableFuture&#xB97C; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;. </li>
+<li><code>CompletableFuture</code>&#xB294; &#xC900;&#xBE44; &#xB420; &#xB54C; &#xB9C8;&#xB2E4; &#xC77C;&#xBD80; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB2E4;. </li>
+<li>&#xC774;&#xC81C; Java 9&#xB294; &#xC9C0;&#xC5F0; &#xBC0F; &#xC2DC;&#xAC04; &#xCD08;&#xACFC;&#xB97C; &#xC9C0;&#xC6D0;&#xD558;&#xB294; &#xAC1C;&#xC120;&#xB41C; <code>CompletableFuture API</code>&#xB97C; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;.</li>
+</ul>
+<h4 id="delay">delay()</h4>
+<pre><code class="lang-Java">
+future.completeAsync(supplier, CompletableFuture.delayedExecutor(<span class="hljs-number">3</span>, TimeUnit.SECONDS))
+        .thenAccept(result -&gt; System.out.println(<span class="hljs-string">&quot;accept: &quot;</span> + result));
+
+<span class="hljs-comment">// other statements</span>
+future.completeAsync(supplier, CompletableFuture.delayedExecutor(<span class="hljs-number">3</span>, TimeUnit.SECONDS))
+    .thenAccept(result -&gt; System.out.println(<span class="hljs-string">&quot;accept: &quot;</span> + result));
+
+<span class="hljs-comment">// other statements</span>
+</code></pre>
+<h4 id="ortimeout">orTimeout()</h4>
+<pre><code class="lang-Java">
+        <span class="hljs-comment">// TIMEOUT = 3;</span>
+        <span class="hljs-comment">// doWork() takes 5 seconds to finish</span>
+
+        CompletableFuture&lt;String&gt; future = 
+                doWork(<span class="hljs-string">&quot;JavaSampleApproach&quot;</span>)
+                .orTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .whenComplete((result, error) -&gt; {
+                    <span class="hljs-keyword">if</span> (error == <span class="hljs-keyword">null</span>) {
+                        System.out.println(<span class="hljs-string">&quot;The result is: &quot;</span> + result);
+                    } <span class="hljs-keyword">else</span> {
+                        System.out.println(<span class="hljs-string">&quot;Sorry, timeout in &quot;</span> + TIMEOUT + <span class="hljs-string">&quot; seconds&quot;</span>);
+                    }
+                });
+    <span class="hljs-comment">// TIMEOUT = 3;</span>
+    <span class="hljs-comment">// doWork() takes 5 seconds to finish</span>
+
+    CompletableFuture&lt;String&gt; future = 
+        doWork(<span class="hljs-string">&quot;JavaSampleApproach&quot;</span>)
+        .orTimeout(TIMEOUT, TimeUnit.SECONDS)
+        .whenComplete((result, error) -&gt; {
+          <span class="hljs-keyword">if</span> (error == <span class="hljs-keyword">null</span>) {
+            System.out.println(<span class="hljs-string">&quot;The result is: &quot;</span> + result);
+          } <span class="hljs-keyword">else</span> {
+            System.out.println(<span class="hljs-string">&quot;Sorry, timeout in &quot;</span> + TIMEOUT + <span class="hljs-string">&quot; seconds&quot;</span>);
+          }
+        });
+</code></pre>
+<h4 id="completeontimeout">completeOnTimeout()</h4>
+<pre><code class="lang-Java">
+        <span class="hljs-comment">// TIMEOUT = 3;</span>
+        <span class="hljs-comment">// doWork() takes 5 seconds to finish</span>
+
+        CompletableFuture&lt;String&gt; future = 
+                doWork(<span class="hljs-string">&quot;JavaSampleApproach&quot;</span>)
+                .completeOnTimeout(<span class="hljs-string">&quot;JavaTechnology&quot;</span>, TIMEOUT, TimeUnit.SECONDS)
+                .whenComplete((result, error) -&gt; {
+                    <span class="hljs-keyword">if</span> (error == <span class="hljs-keyword">null</span>) {
+                        System.out.println(<span class="hljs-string">&quot;The result is: &quot;</span> + result);
+                    } <span class="hljs-keyword">else</span> {
+                        <span class="hljs-comment">// this statement will never run.</span>
+                        System.out.println(<span class="hljs-string">&quot;Sorry, timeout in &quot;</span> + TIMEOUT + <span class="hljs-string">&quot; seconds.&quot;</span>);
+                    }
+                });
+    <span class="hljs-comment">// TIMEOUT = 3;</span>
+    <span class="hljs-comment">// doWork() takes 5 seconds to finish</span>
+
+    CompletableFuture&lt;String&gt; future = 
+        doWork(<span class="hljs-string">&quot;JavaSampleApproach&quot;</span>)
+        .completeOnTimeout(<span class="hljs-string">&quot;JavaTechnology&quot;</span>, TIMEOUT, TimeUnit.SECONDS)
+        .whenComplete((result, error) -&gt; {
+          <span class="hljs-keyword">if</span> (error == <span class="hljs-keyword">null</span>) {
+            System.out.println(<span class="hljs-string">&quot;The result is: &quot;</span> + result);
+          } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// this statement will never run.</span>
+            System.out.println(<span class="hljs-string">&quot;Sorry, timeout in &quot;</span> + TIMEOUT + <span class="hljs-string">&quot; seconds.&quot;</span>);
+          }
+        });
+</code></pre>
+<h2 id="4-reactive-streams-&#x2013;-flow-api">4. Reactive Streams &#x2013; Flow API</h2>
+<ul>
+<li><p>Java9&#xB294; &#xC0C1;&#xD638; &#xC6B4;&#xC6A9; &#xAC00;&#xB2A5;&#xD55C; publish-subcribe&#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C;&#xB97C; &#xC9C0;&#xC6D0;&#xD558;&#xB294; java.util.concurrent.Flow&#xC5D0;&#xC11C; Reactive Stream&#xC744; &#xC18C;&#xAC1C;&#xD55C;&#xB2E4;.</p>
+<pre><code class="lang-Java">
+  <span class="hljs-meta">@FunctionalInterface</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Publisher</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">subscribe</span><span class="hljs-params">(Subscriber&lt;?superT&gt; subscriber)</span></span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Subscriber</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSubscribe</span><span class="hljs-params">(Subscription subscription)</span></span>;
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNext</span><span class="hljs-params">(Titem)</span></span>;
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onError</span><span class="hljs-params">(Throwable throwable)</span></span>;
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onComplete</span><span class="hljs-params">()</span></span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Subscription</span> </span>{
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">request</span><span class="hljs-params">(<span class="hljs-keyword">long</span> n)</span></span>;
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">cancel</span><span class="hljs-params">()</span></span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Processor</span>&lt;<span class="hljs-title">T</span>,<span class="hljs-title">R</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">Subscriber</span>&lt;<span class="hljs-title">T</span>&gt;, <span class="hljs-title">Publisher</span>&lt;<span class="hljs-title">R</span>&gt; </span>{
+  }
+
+  <span class="hljs-meta">@FunctionalInterface</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Publisher</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">subscribe</span><span class="hljs-params">(Subscriber&lt;?superT&gt; subscriber)</span></span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Subscriber</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSubscribe</span><span class="hljs-params">(Subscription subscription)</span></span>;
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNext</span><span class="hljs-params">(Titem)</span></span>;
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onError</span><span class="hljs-params">(Throwable throwable)</span></span>;
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onComplete</span><span class="hljs-params">()</span></span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Subscription</span> </span>{
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">request</span><span class="hljs-params">(<span class="hljs-keyword">long</span> n)</span></span>;
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">cancel</span><span class="hljs-params">()</span></span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Processor</span>&lt;<span class="hljs-title">T</span>,<span class="hljs-title">R</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">Subscriber</span>&lt;<span class="hljs-title">T</span>&gt;, <span class="hljs-title">Publisher</span>&lt;<span class="hljs-title">R</span>&gt; </span>{
+  }
+</code></pre>
+<p>&#xC544;&#xB798; &#xB2E4;&#xC774;&#xC5B4;&#xADF8;&#xB7A8;&#xC740; &#xB3D9;&#xC791;&#xACFC; &#xC0C8;&#xB85C;&#xC6B4; Flow API&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; Reactive Stream&#xC744; &#xAD6C;&#xD604;&#xD55C; &#xBC29;&#xBC95;&#xC744; &#xBCF4;&#xC5EC;&#xC900;&#xB2E4;.
+reactive-stream-flow-interface-behavior</p>
+</li>
+</ul>
+<h2 id="5-collectionslist-set-map&#xB97C;-&#xC704;&#xD55C;-&#xD329;&#xD1A0;&#xB9AC;-&#xBA54;&#xC18C;&#xB4DC;-factory-method-for-collections-list-set-map">5. Collections(List, Set, Map)&#xB97C; &#xC704;&#xD55C; &#xD329;&#xD1A0;&#xB9AC; &#xBA54;&#xC18C;&#xB4DC; (Factory Method for Collections: List, Set, Map)</h2>
+<p>Java9&#xB294; &#xC801;&#xC740;&#xC218;&#xC758; &#xC694;&#xC18C;&#xB85C; &#xD3B8;&#xB9AC;&#xD558;&#xAC8C; &#xCF5C;&#xB809;&#xC158;&#xACFC; &#xB9F5;&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xC0DD;&#xC131; &#xD560; &#xC218; &#xC788;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xC815;&#xC801; &#xD329;&#xD1A0;&#xB9AC; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;.</p>
+<pre><code class="lang-Java">
+List&lt;String&gt; immutableList = List.of(<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-string">&quot;three&quot;</span>);
+Set&lt;String&gt; immutableSet = Set.of(<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-string">&quot;three&quot;</span>);
+Map&lt;Integer,String&gt; immutableMap = Map.of(<span class="hljs-number">1</span>,<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-number">2</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-number">3</span>,<span class="hljs-string">&quot;three&quot;</span>)
+
+
+List&lt;String&gt; immutableList = List.of(<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-string">&quot;three&quot;</span>);
+Set&lt;String&gt; immutableSet = Set.of(<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-string">&quot;three&quot;</span>);
+Map&lt;Integer,String&gt; immutableMap = Map.of(<span class="hljs-number">1</span>,<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-number">2</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-number">3</span>,<span class="hljs-string">&quot;three&quot;</span>)
+&#xB2E4;&#xB9CC; &#xC815;&#xC801; &#xD329;&#xD1A0;&#xB9AC; &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xC791;&#xC131;&#xB41C; &#xCF5C;&#xB809;&#xC158;&#xC740; &#xBD88;&#xBCC0;&#xC774;&#xBBC0;&#xB85C;, &#xC694;&#xC18C; &#xB610;&#xB294; <span class="hljs-keyword">null</span>&#xC744; add/put &#xD558;&#xB824;&#xACE0; &#xD558;&#xBA74; java.lang.UnsupportedOperationException &#xB610;&#xB294; java.lang.NullPointerException &#xC744; &#xBC1C;&#xC0DD; &#xC2DC;&#xD0A8;&#xB2E4;.
+</code></pre>
+<h2 id="6-&#xAC15;&#xD654;&#xB41C;deprecation-enhanced-deprecation">6. &#xAC15;&#xD654;&#xB41C;Deprecation (Enhanced Deprecation)</h2>
+<p>Java9 @Deprecated &#xC560;&#xB178;&#xD14C;&#xC774;&#xC158;&#xC758; &#xC0C8;&#xB86D;&#xAC8C; &#xCD94;&#xAC00;&#xB41C; &#xBA54;&#xC18C;&#xB4DC;&#xB294; forRemoval() &#xBC0F; since() &#xC774;&#xB2E4;.</p>
+<p>&#xC0C8;&#xB85C;&#xC6B4; @Deprecated&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xC608;</p>
+<pre><code class="lang-java"><span class="hljs-meta">@Deprecated</span>(since =&#x201D;<span class="hljs-number">1.5</span>&#x2033;, forRemoval = <span class="hljs-keyword">true</span>)
+</code></pre>
+<h2 id="7-stack-walking-api">7. Stack-Walking API</h2>
+<ul>
+<li>Java 9&#xB294; StackWalker &#xB85C; &#xC2A4;&#xD0DD; &#xCD94;&#xCC99;&#xC744; &#xD544;&#xD130;&#xB9C1;&#xD558;&#xC5EC; &#xC9C0;&#xC5F0; &#xC561;&#xC138;&#xC2A4;&#xB97C; &#xC704;&#xD55C; &#xC2A4;&#xD0DD; &#xC6CC;&#xD0B9;&#xC758; &#xD6A8;&#xC728;&#xC801;&#xC778; &#xBC29;&#xBC95;&#xC744; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;. </li>
+<li>StackWalker &#xAC1D;&#xCCB4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xC2A4;&#xD0DD;&#xC744; &#xAC00;&#xB85C;&#xC9C8;&#xB7EC; &#xC561;&#xC138;&#xC2A4; &#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xC5EC;&#xAE30;&#xC5D0;&#xB294; &#xBA87;&#xAC00;&#xC9C0; &#xC720;&#xC6A9;&#xD558;&#xACE0; &#xAC15;&#xB825;&#xD55C; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xACE0; &#xC788;&#xB2E4;.</li>
+</ul>
+<pre><code class="lang-java">
+    <span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">walk</span><span class="hljs-params">(Function&lt;? <span class="hljs-keyword">super</span> Stream&lt;StackFrame&gt;, ? extends T&gt; function)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">forEach</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> StackFrame&gt; action)</span></span>;
+    <span class="hljs-keyword">public</span> Class&lt;?&gt; getCallerClass();
+    <span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">walk</span><span class="hljs-params">(Function&lt;? <span class="hljs-keyword">super</span> Stream&lt;StackFrame&gt;, ? extends T&gt; function)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">forEach</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> StackFrame&gt; action)</span></span>;
+    <span class="hljs-keyword">public</span> Class&lt;?&gt; getCallerClass();
+</code></pre>
+<ul>
+<li>&#xAC00;&#xC7A5; &#xC911;&#xC694;&#xD55C; &#xBA54;&#xC18C;&#xB4DC;&#xB294;walk() &#xC774;&#xB2E4;. &#xC774; &#xBA54;&#xC18C;&#xB4DC;&#xB294; &#xD604;&#xC7AC; &#xC2A4;&#xB808;&#xB4DC;&#xC5D0; &#xB300;&#xD55C; StackFrame &#xC2A4;&#xD2B8;&#xB9BC;&#xC744; open&#xD55C;&#xB2E4;.</li>
+<li>StackFrame &#xC2A4;&#xD2B8;&#xB9BC;&#xACFC; &#xD568;&#xAED8; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC801;&#xC6A9;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD558;&#xB3C4;&#xB85D; &#xD558;&#xB77C;.</li>
+</ul>
+<h2 id="8-&#xB2E4;&#xB978;-&#xAC1C;&#xC120;&#xC810;&#xB4E4;-other-improvements">8. &#xB2E4;&#xB978; &#xAC1C;&#xC120;&#xC810;&#xB4E4; (Other Improvements)</h2>
+<h3 id="81-stream-&#xAC1C;&#xC120;stream-improvements">8.1 Stream &#xAC1C;&#xC120;(Stream Improvements)</h3>
+<p>Java 9 Stream &#xC740; <code>iterate(), takeWhile()/dropWhile(), ofNullable()</code>  &#xACFC; &#xAC19;&#xC740; &#xC0C8;&#xB85C;&#xC6B4; &#xCD94;&#xAC00; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBE44;&#xB3D9;&#xAE30; &#xD504;&#xB85C;&#xADF8;&#xB798;&#xBC0D;&#xC5D0; &#xB300;&#xD55C; &#xBA87; &#xAC00;&#xC9C0; &#xC720;&#xC6A9;&#xD55C; &#xAC1C;&#xC120; &#xC0AC;&#xD56D;&#xC744; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;.</p>
+<h5 id="iterate">iterate()</h5>
+<pre><code class="lang-Java">
+IntStream
+    .iterate(<span class="hljs-number">1</span>, i -&gt; i &lt; <span class="hljs-number">20</span>, i -&gt; i * <span class="hljs-number">2</span>)
+    .forEach(System.out::println);
+
+IntStream
+  .iterate(<span class="hljs-number">1</span>, i -&gt; i &lt; <span class="hljs-number">20</span>, i -&gt; i * <span class="hljs-number">2</span>)
+  .forEach(System.out::println);
+takeWhile()Java
+
+<span class="hljs-comment">//for ordered Stream</span>
+Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>).takeWhile(i -&gt; i &lt;= <span class="hljs-number">3</span>).forEach(System.out::println);
+
+<span class="hljs-comment">// The result is:</span>
+<span class="hljs-comment">// 1</span>
+<span class="hljs-comment">// 2</span>
+<span class="hljs-comment">// 3</span>
+
+<span class="hljs-comment">// for unordered Stream</span>
+Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>).takeWhile(i -&gt; i &lt;= <span class="hljs-number">3</span>).forEach(System.out::println);
+
+<span class="hljs-comment">// The result is:</span>
+<span class="hljs-comment">// 1</span>
+
+<span class="hljs-comment">//for ordered Stream</span>
+Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>).takeWhile(i -&gt; i &lt;= <span class="hljs-number">3</span>).forEach(System.out::println);
+
+<span class="hljs-comment">// The result is:</span>
+<span class="hljs-comment">// 1</span>
+<span class="hljs-comment">// 2</span>
+<span class="hljs-comment">// 3</span>
+
+<span class="hljs-comment">// for unordered Stream</span>
+Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>).takeWhile(i -&gt; i &lt;= <span class="hljs-number">3</span>).forEach(System.out::println);
+
+<span class="hljs-comment">// The result is:</span>
+<span class="hljs-comment">// 1</span>
+dropWhile()
+
+<span class="hljs-comment">//for ordered Stream</span>
+Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>).dropWhile(i -&gt; i &lt;= <span class="hljs-number">3</span>).forEach(System.out::println);
+
+<span class="hljs-comment">// It drops (1,2,3), the result is:</span>
+<span class="hljs-comment">// 4</span>
+<span class="hljs-comment">// 5</span>
+<span class="hljs-comment">// 6</span>
+
+<span class="hljs-comment">//for unordered Stream</span>
+Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>).dropWhile(i -&gt; i &lt;= <span class="hljs-number">3</span>).forEach(System.out::println);
+
+<span class="hljs-comment">// It drops (1), the result is:</span>
+<span class="hljs-comment">// 6</span>
+<span class="hljs-comment">// 5</span>
+<span class="hljs-comment">// 2</span>
+<span class="hljs-comment">// 3</span>
+<span class="hljs-comment">// 4</span>
+
+<span class="hljs-comment">//for ordered Stream</span>
+Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>).dropWhile(i -&gt; i &lt;= <span class="hljs-number">3</span>).forEach(System.out::println);
+
+<span class="hljs-comment">// It drops (1,2,3), the result is:</span>
+<span class="hljs-comment">// 4</span>
+<span class="hljs-comment">// 5</span>
+<span class="hljs-comment">// 6</span>
+
+<span class="hljs-comment">//for unordered Stream</span>
+Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>).dropWhile(i -&gt; i &lt;= <span class="hljs-number">3</span>).forEach(System.out::println);
+
+<span class="hljs-comment">// It drops (1), the result is:</span>
+<span class="hljs-comment">// 6</span>
+<span class="hljs-comment">// 5</span>
+<span class="hljs-comment">// 2</span>
+<span class="hljs-comment">// 3</span>
+<span class="hljs-comment">// 4</span>
+ofNullable()Java
+
+        <span class="hljs-comment">// numbers [1,2,3,null]</span>
+        <span class="hljs-comment">// mapNumber [1 - one, 2 - two, 3 - three, null - null]</span>
+
+        List&lt;String&gt; newstringNumbers = numbers.stream()
+                .flatMap(s -&gt; Stream.ofNullable(mapNumber.get(s)))
+                .collect(Collectors.toList());
+
+        <span class="hljs-comment">// The result is:</span>
+        <span class="hljs-comment">// [one, two, three]</span>
+
+    <span class="hljs-comment">// numbers [1,2,3,null]</span>
+    <span class="hljs-comment">// mapNumber [1 - one, 2 - two, 3 - three, null - null]</span>
+
+    List&lt;String&gt; newstringNumbers = numbers.stream()
+        .flatMap(s -&gt; Stream.ofNullable(mapNumber.get(s)))
+        .collect(Collectors.toList());
+
+    <span class="hljs-comment">// The result is:</span>
+    <span class="hljs-comment">// [one, two, three]</span>
+</code></pre>
+<h2 id="82-optional-&#xAC1C;&#xC120;-optional-improvements">8.2 Optional &#xAC1C;&#xC120; (Optional Improvements)</h2>
+<p>Java 9 &#xB294; &#xC0C8;&#xB85C;&#xC6B4; <code>Optional::stream</code> &#xC73C;&#xB85C; Optional &#xAC1D;&#xCCB4; &#xC9C0;&#xC5F0;&#xC791;&#xC5C5;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xBA70; zero &#xB610;&#xB294; &#xD558;&#xB098; &#xC774;&#xC0C1;&#xC758; &#xC694;&#xC18C; &#xC2A4;&#xD2B8;&#xB9BC;&#xC744; &#xBC18;&#xD55C;&#xD55C;&#xB2E4;. &#xB610;&#xD55C; &#xBE48;&#xC694;&#xC18C;&#xB97C; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xD655;&#xC778;&#xD558;&#xACE0; &#xC81C;&#xAC70;&#xD55C;&#xB2E4;.</p>
+<pre><code class="lang-Java">
+<span class="hljs-comment">// streamOptional(): [(Optional.empty(), Optional.of(&quot;one&quot;), Optional.of(&quot;two&quot;), Optional.of(&quot;three&quot;)]</span>
+
+List&lt;String&gt; newStrings = streamOptional()
+                .flatMap(Optional::stream)
+                .collect(Collectors.toList());
+
+<span class="hljs-comment">// Result: newStrings[one, two, three]</span>
+<span class="hljs-comment">// streamOptional(): [(Optional.empty(), Optional.of(&quot;one&quot;), Optional.of(&quot;two&quot;), Optional.of(&quot;three&quot;)]</span>
+
+List&lt;String&gt; newStrings = streamOptional()
+        .flatMap(Optional::stream)
+        .collect(Collectors.toList());
+
+<span class="hljs-comment">// Result: newStrings[one, two, three]</span>
+</code></pre>
+<ul>
+<li><p>isPresent() &#xBC0F;orElse() &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xCF54;&#xB4DC;&#xB97C; &#xBCF4;&#xB2E4; &#xBA85;&#xD655;&#xD558;&#xAC8C; &#xB9CC;&#xB4E4;&#xACE0; &#x201C;else&#x201D; &#xCF00;&#xC774;&#xC2A4;&#xB97C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xB300;&#xC2E0; Java9&#xC758; ifPresentOrElse() &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<pre><code class="lang-Java">
+      Optional&lt;Integer&gt; result3 = getOptionalEmpty();
+      result3.ifPresentOrElse(
+              x -&gt; System.out.println(<span class="hljs-string">&quot;Result = &quot;</span> + x),
+              () -&gt; System.out.println(<span class="hljs-string">&quot;return &quot;</span> + result2.orElse(-<span class="hljs-number">1</span>) + <span class="hljs-string">&quot;: Result not found.&quot;</span>));
+
+      <span class="hljs-comment">// return -1: Result not found.</span>
+
+  Optional&lt;Integer&gt; result3 = getOptionalEmpty();
+  result3.ifPresentOrElse(
+      x -&gt; System.out.println(<span class="hljs-string">&quot;Result = &quot;</span> + x),
+      () -&gt; System.out.println(<span class="hljs-string">&quot;return &quot;</span> + result2.orElse(-<span class="hljs-number">1</span>) + <span class="hljs-string">&quot;: Result not found.&quot;</span>));
+
+  <span class="hljs-comment">// return -1: Result not found.</span>
+</code></pre>
+</li>
+<li><p>or() &#xBA54;&#xC18C;&#xB4DC;&#xB294; &#xAC12;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294;&#xC9C0; &#xAC80;&#xC0AC;&#xD558;&#xACE0; &#xAC12;&#xC774; &#xC788;&#xB294; &#xACBD;&#xC6B0; &#xD574;&#xB2F9;  Optional &#xC744; &#xB9AC;&#xD134;&#xD558;&#xACE0; &#xADF8;&#xB807;&#xC9C0; &#xC54A;&#xC740; &#xACBD;&#xC6B0; supplying function&#xC5D0;&#xC11C; &#xC0DD;&#xC131;&#xD55C; &#xB2E4;&#xB978; Optional &#xAC12;&#xC744; &#xB9AC;&#xD134;&#xD55C;&#xB2E4;.</p>
+<pre><code class="lang-Java">
+      Optional&lt;Integer&gt; result = getOptionalEmpty() <span class="hljs-comment">// Empty Optional object</span>
+              .or(() -&gt; getAnotherOptionalEmpty()) <span class="hljs-comment">// Empty Optional object</span>
+              .or(() -&gt; getOptionalNormal())  <span class="hljs-comment">// this return an Optional with real value 42</span>
+              .or(() -&gt; getAnotherOptionalNormal());  <span class="hljs-comment">// this return an Optional with real value 99</span>
+
+      <span class="hljs-comment">// Result: Optional[42]</span>
+
+  Optional&lt;Integer&gt; result = getOptionalEmpty() <span class="hljs-comment">// Empty Optional object</span>
+      .or(() -&gt; getAnotherOptionalEmpty()) <span class="hljs-comment">// Empty Optional object</span>
+      .or(() -&gt; getOptionalNormal())  <span class="hljs-comment">// this return an Optional with real value 42</span>
+      .or(() -&gt; getAnotherOptionalNormal());  <span class="hljs-comment">// this return an Optional with real value 99</span>
+
+  <span class="hljs-comment">// Result: Optional[42]</span>
+</code></pre>
+</li>
+</ul>
+<h1 id="v-&#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;-&#xAE30;&#xC220;-client-technologies">V. &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xAE30;&#xC220; (Client Technologies)</h1>
+<h2 id="1-&#xB2E4;&#xC911;-&#xD574;&#xC0C1;&#xB3C4;-&#xC774;&#xBBF8;&#xC9C0;-multi-resolution-images">1. &#xB2E4;&#xC911; &#xD574;&#xC0C1;&#xB3C4; &#xC774;&#xBBF8;&#xC9C0; (Multi-Resolution Images)</h2>
+<p> <code>java.awt.image</code> &#xD328;&#xD0A4;&#xC9C0;&#xC5D0; &#xC815;&#xC758;&#xB41C; &#xC0C8;&#xB85C;&#xC6B4; API&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xC774;&#xC810;&#xC774; &#xC788;&#xC74C;.</p>
+<ul>
+<li>&#xD574;&#xC0C1;&#xB3C4;&#xAC00; &#xB2E4;&#xB978; &#xB2E4;&#xC218;&#xC758; &#xC774;&#xBBF8;&#xC9C0;&#xB97C; &#xBCC0;&#xD615;&#xB41C; &#xC774;&#xBBF8;&#xC9C0;&#xB85C; &#xCEA1;&#xC290;&#xD654; &#xD55C;&#xB2E4;.</li>
+<li>&#xC774;&#xBBF8;&#xC9C0;&#xC5D0;&#xC11C; &#xBAA8;&#xB4E0; &#xBCC0;&#xD615;&#xC744; &#xC5BB;&#xC74C;.</li>
+<li>&#xD574;&#xC0C1;&#xB3C4; &#xAD00;&#xB828; &#xC774;&#xBBF8;&#xC9C0; &#xBCC0;&#xACBD; &#xAC00;&#xC838;&#xC624;&#xAE30; &#x2013;&gt; &#xD2B9;&#xC815; DPI &#xBA54;&#xD2B8;&#xB9AD;&#xC744; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xC9C0;&#xC815;&#xB41C; &#xD06C;&#xAE30;&#xB85C; &#xB17C;&#xB9AC; &#xC774;&#xBBF8;&#xC9C0;&#xB97C; &#xD45C;&#xD604;&#xD558;&#xB294; &#xCD5C;&#xC0C1;&#xC758; &#xBCC0;&#xD615;&#xC744; &#xAC00;&#xC838;&#xC628;&#xB2E4;.</li>
+</ul>
+<h2 id="2tiff-&#xC774;&#xBBF8;&#xC9C0;-io-&#xD50C;&#xB7EC;&#xADF8;&#xC778;-tiff-image-io-plugins">2.TIFF &#xC774;&#xBBF8;&#xC9C0; I/O &#xD50C;&#xB7EC;&#xADF8;&#xC778; (TIFF Image I/O Plugins)</h2>
+<p>&#xC774;&#xC804; &#xBC84;&#xC804;&#xC758; Java&#xC5D0;&#xC11C; &#xC774;&#xBBF8;&#xC9C0; I/O &#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C; <code>javax.imageio</code> &#xB294; PNG &#xBC0F; JPEG&#xC640; &#xAC19;&#xC740; &#xC77C;&#xBD80; &#xD615;&#xC2DD;&#xC758; &#xC774;&#xBBF8;&#xC9C0; &#xCF54;&#xB371;&#xC744; &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xD558;&#xB294; &#xD45C;&#xC900; &#xBC29;&#xBC95;&#xC744; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; TIFF&#xB294; &#xC5EC;&#xC804;&#xD788; &#xC138;&#xD2B8;&#xC5D0;&#xC11C; &#xBE60;&#xC838; &#xC788;&#xB2E4;. </p>
+<p>&#xC774;&#xC804;&#xC5D0;&#xB294;  <code>com.sun.media.imageio.plugins.tiffbefore.</code> &#xC5D0; &#xD328;&#xD0A4;&#xC9C0; &#xB418;&#xC5B4; &#xC788;&#xC5C8;&#xACE0; Java 9 TIFF &#xC774;&#xBBF8;&#xC9C0; I/O &#xD50C;&#xB7EC;&#xADF8;&#xC778;(TIFF Image I/O plugins) &#xC5D0;&#xB294;com.sun.media.imageio.plugins.tiff. &#xC5D0;&#xC11C; &#xC774;&#xB984;&#xC774; &#xBCC0;&#xACBD;&#xB41C; javax.imageio.plugins.tiff &#xB77C;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xD328;&#xD0A4;&#xC9C0;&#xAC00; &#xC788;&#xB2E4;.
+&#xC774; &#xD328;&#xD0A4;&#xC9C0;&#xC5D0;&#xB294; &#xB0B4;&#xC7A5; TIFF &#xD310;&#xB3C5;&#xAE30;(reader),  &#xAE30;&#xB85D;&#xAE30;(writer) &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xB294; &#xBA87;&#xBA87; &#xD074;&#xB798;&#xC2A4;&#xAC00; &#xB4E4;&#xC5B4; &#xC788;&#xC73C;&#xBA70; &#xB2E4;&#xC74C; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xACE0; &#xC788;&#xB2E4;.
+&#xAE30;&#xBCF8; TIFF&#xC0AC;&#xD5A5;, Exif IFD, TIFF-F(RFC 2306) &#xD30C;&#xC77C;, GeoTIFF IFD&#xC5D0;&#xC11C; &#xBCFC; &#xC218; &#xC788;&#xB294; &#xACF5;&#xD1B5; &#xCD94;&#xAC00;&#xD0DC;&#xD06C; &#xBC0F; &#xD0DC;&#xADF8; &#xC9D1;&#xD55C;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; &#xC77C;&#xBD80; &#xD074;&#xB798;&#xC2A4;.
+TIFFImageReadParam: &#xC77D;&#xC744; &#xC218; &#xC788;&#xB294; &#xBA54;&#xD0C0; &#xB370;&#xC774;&#xD130; &#xD0DC;&#xADF8;&#xC640; &#xC77C;&#xBD80; &#xB300;&#xC0C1; &#xC18D;&#xC131;&#xC744; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xB294;  ImageReadParam &#xC758; &#xD655;&#xC7A5;.</p>
+<h1 id="vi-&#xAD6D;&#xC81C;&#xD654;-internationalization">VI. &#xAD6D;&#xC81C;&#xD654; (Internationalization)</h1>
+<h2 id="1-&#xC720;&#xB2C8;&#xCF54;&#xB4DC;-80-unicode-80">1. &#xC720;&#xB2C8;&#xCF54;&#xB4DC; 8.0 (Unicode 8.0)</h2>
+<ul>
+<li>Java 8 &#xC740; &#xC720;&#xB2C8;&#xCF54;&#xB4DC; 6.2&#xB97C; &#xC9C0;&#xC6D0;&#xD568;.</li>
+<li><p>Java 9 &#xB294; 10,555&#xC790;,  29&#xAC1C;&#xC758; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xBC0F; 42&#xAC1C; &#xBE14;&#xB85D;&#xC758; &#xC720;&#xB2C8;&#xCF54;&#xB4DC; 8.0 &#xD45C;&#xC900;&#xC744; &#xC9C0;&#xC6D0;&#xD55C;&#xB2E4;.</p>
+<h2 id="2-utf-8-&#xD504;&#xB85C;&#xD37C;&#xD2F0;-&#xD30C;&#xC77C;-utf-8-properties-files">2. UTF-8 &#xD504;&#xB85C;&#xD37C;&#xD2F0; &#xD30C;&#xC77C; (UTF-8 Properties Files)</h2>
+</li>
+<li><p>&#xC774;&#xC804; &#xB9B4;&#xB9AC;&#xC988;&#xC5D0;&#xC11C;&#xB294; &#xD504;&#xB85C;&#xD37C;&#xD2F0; &#xB9AC;&#xC18C;&#xC2A4; &#xBC88;&#xB4E4;&#xC744; &#xB85C;&#xB4DC; &#xD560;&#xB54C; ISO-8859-1 &#xC778;&#xCF54;&#xB529;&#xC774; &#xC0AC;&#xC6A9;&#xB418;&#xC5C8;&#xC74C;. (PropertyResourceBundle &#x2013;InputStream &#xC5D0;&#xC11C; &#xD574;&#xB2F9; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB824;&#xBA74; &#xC785;&#xB825;&#xC744; &#xC2A4;&#xD2B8;&#xB9BC;&#xC744; ISO-8859-1&#xB85C; &#xC778;&#xCF54;&#xB529;&#xD574;&#xC57C;&#xD568; ) </p>
+</li>
+<li>&#xADF8;&#xB7EC;&#xB098; ISO-8859-1&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xAC83;&#xC740; &#xBE44; &#xB77C;&#xD2F4; &#xBB38;&#xC790;&#xB97C; &#xD45C;&#xD604;&#xD558;&#xB294; &#xD3B8;&#xB9AC;&#xD55C; &#xBC29;&#xBC95;&#xC774; &#xC544;&#xB2C8;&#xB2E4;.
+Java9&#xC5D0;&#xC11C;&#xB294; &#xD504;&#xB85C;&#xD37C;&#xD2F0; &#xD30C;&#xC77C;&#xC744; UTF-8&#xC778;&#xCF54;&#xB529;&#xC73C;&#xB85C;  &#xB85C;&#xB4DC;&#xD55C;&#xB2E4;.  &#xBB38;&#xC81C;&#xAC00; &#xC788;&#xB294; &#xACBD;&#xC6B0; &#xB2E4;&#xC74C; &#xC635;&#xC158;&#xC744; &#xACE0;&#xB824;&#xD574;&#xBCF4;&#xC790;.<ul>
+<li>&#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xD30C;&#xC77C;&#xC744; UTF-8 &#xC778;&#xCF54;&#xB529;&#xC73C;&#xB85C; &#xBCC0;&#xD658;.</li>
+<li>runtime &#xC2DC;&#xC2A4;&#xD15C; &#xD2B9;&#xC131;&#xC744; &#xC9C0;&#xC815;.<pre><code class="lang-java">java.util.PropertyResourceBundle.encoding=ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">1</span>
+<span class="hljs-number">1</span>
+java.util.PropertyResourceBundle.encoding=ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">1</span>
+</code></pre>
+<h2 id="3-&#xAE30;&#xBCF8;-&#xB85C;&#xCF00;&#xC77C;-&#xB370;&#xC774;&#xD130;-&#xBCC0;&#xACBD;default-locale-data-change">3. &#xAE30;&#xBCF8; &#xB85C;&#xCF00;&#xC77C; &#xB370;&#xC774;&#xD130; &#xBCC0;&#xACBD;(Default Locale Data Change)</h2>
+JDK8 &#xBC0F; &#xC774;&#xC804; &#xB9B4;&#xB9AC;&#xC988;&#xC5D0;&#xC11C;&#xB294; JRE&#xAC00; &#xAE30;&#xBCF8; &#xB85C;&#xCF00;&#xC77C; &#xB370;&#xC774;&#xD130;&#xB2E4;.  </li>
+</ul>
+</li>
+</ul>
+<p>JDK9&#xC740; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; CLDR(Unicode Common Locale Data Repository &#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xC5D0;&#xC11C; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xB85C;&#xCF00;&#xC77C; &#xB370;&#xC774;&#xD130;)&#xC744; &#xAC00;&#xC7A5; &#xB192;&#xC740; &#xC6B0;&#xC120; &#xC21C;&#xC704;&#xB85C; &#xC124;&#xC815;&#xD55C;&#xB2E4;. </p>
+<p>&#xC774;&#xAC83;&#xC740;  java.locale.providers &#xC2DC;&#xC2A4;&#xD15C; &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xAE30;&#xBCF8; &#xC21C;&#xC11C;&#xB85C; &#xB85C;&#xCF00;&#xC77C; &#xB370;&#xC774;&#xD130; &#xC18C;&#xC2A4;&#xB97C; &#xC120;&#xD0DD;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC774;&#xB2E4;. &#xD504;&#xB85C; &#xBC14;&#xC774;&#xB354;&#xAC00; &#xB85C;&#xCF00;&#xC77C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC694;&#xAD6C;&#xD558;&#xC9C0; &#xC54A;&#xC558;&#xC744; &#xACBD;&#xC6B0; &#xB2E4;&#xC74C;&#xC758; &#xD504;&#xB85C;&#xBC14;&#xC774;&#xB354;&#xAC00; &#xCC98;&#xB9AC;&#xB41C;&#xB2E4;.</p>
+<pre><code class="lang-java">java.locale.providers=COMPAT,CLDR,HOST,SPI
+
+java.locale.providers=COMPAT,CLDR,HOST,SPI
+</code></pre>
+<p>&#xC774; &#xC18D;&#xC131;&#xC744; &#xC124;&#xC815;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xAE30;&#xBCF8; &#xB3D9;&#xC791;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xB2E4;.</p>
+<pre><code class="lang-java">java.locale.providers=CLDR,COMPAT,SPI
+java.locale.providers=CLDR,COMPAT,SPI
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="java8.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Java8">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Java9","level":"1.1.2","depth":2,"previous":{"title":"Java8","level":"1.1.1","depth":2,"path":"docs/java8.md","ref":"docs/java8.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/java9.md","mtime":"2018-01-21T16:15:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-21T16:16:38.761Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
