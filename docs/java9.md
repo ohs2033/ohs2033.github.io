@@ -1,32 +1,119 @@
-출처 : http://www.popit.kr/%EB%82%98%EB%A7%8C-%EB%AA%A8%EB%A5%B4%EA%B3%A0-%EC%9E%88%EB%8D%98-java9-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%B3%B4%EA%B8%B0/
+출처 : 
+- http://www.popit.kr/%EB%82%98%EB%A7%8C-%EB%AA%A8%EB%A5%B4%EA%B3%A0-%EC%9E%88%EB%8D%98-java9-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%B3%B4%EA%B8%B0/
+
+- https://infoscis.github.io/2017/03/24/First-steps-with-java9-and-jigsaw-part-1/
+
+- http://greatkim91.tistory.com/197
 
 #  I. Java 플랫폼 모듈 시스템(Java Platform Module System)
+---
 
-
+## Why module?
 &nbsp; **Jigsaw(직소) 프로젝트** 기반하에 개발된 `Java9 Module System`은 안정적인 구성과 강력하고 유연한 캡슐화를 제공한다는 구체적인 목표를 가지고 있다. 이를 통해 응용 프로그램 개발자, 라이브러리 개발자는 또는 Java SE Platform 개발자는 확장 가능한 플랫폼을 만들고 플랫폼 무결성을 높이며 성능을 향상 시킬 수 있다.
 
-### Module이란?
+하지만 기존의 시스템이 잘 돌고 있는데 우리는 왜 굳이 새로운 모듈 시스템을 필요로 하는가? 기존 Java 패키징 매커니즘의 문제는 **캡슐화 지원**이 부족한 것을 대표적으로 들 수 있다. 클래스 수준의 한정자가 있지만, 패키지를 넘어서는 힘은 가지고 있지 않다. JAR로 자바 패키지가 제공되고 문서화가 잘 되더라도 클래스와 메소드가 public 이라면, 여러가지 이유로 설계자가 의도하지 않은 호출이 발생할 수 있다. 이러한 호출가능성 때문에 API 설계자가 기능 개선을 위해 클래스를 변경하기 어려운 경우도 존재한다.
 
-모듈은 다음과 같이 코드와 데이터로 나누어서 설명할 수 있다.
-- code : type을 포함하고 있는 packages. ( Java class들, Interface들 )
-- data : resources와 다른 종류의 정적정보.
+따라서 이러한 문제를 '모듈'을 만들고 여기에 명시적으로 외부에서 호출할 수 있는 API를 선언함으로써 해결한다. 이러한 방식은 **유연한 런타임 이미지**를 만드는 것 또한 가능하게 한다. 기존에는 JRE 일부분만 배포할 수가 없었다. `XML, SQL, Swing`같은 패키지는 항상 같이 배포되었다. 이제 언어 레벨에서 모듈간의 의존성을 알 수 있으니 사용되는 모듈만 담아서 런타임 환경을 만들 수 있다.
 
-간단히 말하면,
-- Class는 field와 method를 포함한다.
-- Package는 Class와 Enum, Interface, 설정파일들을 포함한다.
-- Module은 Package와 다른 데이터 자원을 포함한다.
 
-Module 시스템 메커니즘은 Module이 다른 Module을 읽고 다른 Module에서 접근할 수 있는 방법을 제어하는 가독성과 접근성을 제공한다. Module에는 세 종류가 있다.
+## Module이란?
 
-1. named module
-2. unnamed module
-3. automatic module
+모듈이란, 아래의 세 가지 질문에 대한 답을 선언하는 소프트웨어 단위이다.
+모듈은 순환 종속성을 금지하는 비순환 그래프이다.
 
-Java는 runtime시점에 classpath를 검색하여 서비스 공급자를 찾을 수 있는 java.util.ServiceLoader 클래스를 가지고 있다.
+1. 이름이 무엇인가?(name)
+2. 어떤 것을 제공하는가(export)
+3. 무엇을 필요로 하는가(require)
+
+
+ 각 모듈에는 이름이 있고, 충돌을 피하기 위해 패키지 명명 규칙과 유사해야 한다. 두번째로, 모듈은 외부 모듈에서 사용할 수 있도록 공개 API로 간주되는 모든 패키지 목록을 제공한다. 또한 만약 어떤 클래스가 `public`이라 할지라도 `export`된 패키지에 없으면 이 클래스에 접근할 수 없다. 세번째로, 우리의 모듈과 의존 관계가 있는 모든 모듈 목록으로 얘기할 수 있다.
+
+이것은 매우 큰 변화이다. Java 8까지 classpath에 있는 모든 public type은 다른 어떤 type에서도 접근이 가능 하였다.
+Jigsaw를 사용하면 Java의 type들에 대한 기존의 접근 방법이
+
+- `public`
+- `private`
+- `default`
+- `protected`
+
+로 부터
+
+- 외부에 대하여 모두 `Public` (`public` to everyone who reads this module (exports))
+- 특정 모듈에만 `Public` (`public` to some modules that read this module (exports to))
+- 모듈 내부만 `Public` (`public` to every other class within the module itself)
+- `private`
+- `default`
+- `protected`
+
+으로 변화한다는 것을 의미한다.
+
+## Basic syntax
+
+Use case로 살펴보자. 우편번호 유효성 검사를 수행하는 `de.codecentric.zipvalidator`라는 모듈이 있다고 하자.
+
+이 모듈은 `de.codecentric.addresschecker` 모듈이 사용한다.
+
+이 zipvalidator는 다음 `module-info.java`에 다음과 같이 선언된다.
+
+```Java
+module de.codecentric.zipvalidator{
+    exports de.codecentric.zipvalidator.api;        
+}
+```
+
+이 모듈은 de.codecentric.zipvalidator.api 패키지를 export하고 다른 모듈은 사용하지 않는다. (java.base 제외). 그리고 이 모듈은 addresschecker에 의해 사용된다.
+
+```Java
+module de.codecentric.addresschecker{
+    exports de.codecentric.addresschecker.api;
+    requires de.codecentric.zipvalidator;
+}
+```
+
+전체 파일시스템 구조는 다음과 같다
+
+```java
+
+two-modules-ok/
+├── de.codecentric.addresschecker
+│   ├── de
+│   │   └── codecentric
+│   │       └── addresschecker
+│   │           ├── api
+│   │           │   ├── AddressChecker.java
+│   │           │   └── Run.java
+│   │           └── internal
+│   │               └── AddressCheckerImpl.java
+│   └── module-info.java
+├── de.codecentric.zipvalidator
+│   ├── de
+│   │   └── codecentric
+│   │       └── zipvalidator
+│   │           ├── api
+│   │           │   ├── ZipCodeValidator.java
+│   │           │   └── ZipCodeValidatorFactory.java
+│   │           ├── internal
+│   │           │   └── ZipCodeValidatorImpl.java
+│   │           └── model
+│   └── module-info.java
+```
+
+## 한계 
+
+- 하위 호환성 부분이 가장 문제이다. 내부 API를 자신도 모르게 쓴 부분을 검사해야 할 것이다
+- com.sun.* 과 같이 비공식적 API를 사용할 수 밖에 없는 경우가 많은데, 이러한 경우에 대한 지원이 없다.
+- lib/rt.jar나 lib/tool.jar 같은 내부 JAR파일들의 접근이 불가하다. 바로 Java 9으로 이전 하는 것은 위험요소가 있다고 볼 수 있음
+
+
+출처: http://greatkim91.tistory.com/197 [행복한 아빠]
+
+좀더 자세한 내용은 [링크](http://greatkim91.tistory.com/197)를 확인하라.
+
 
 
 
 # II. 도구(Tools)
+---
 
 ## 1. Jshell – The Java Shell
 
@@ -63,6 +150,7 @@ HTML5를 지원하는 JDK9에서는  -html5 parameter를 추가 하기만 하면
 
 
 # III. Language Updates
+---
 
 ## 1. try-with-resources 향상
 Java7 은 try-with-resources 구문으로 선언된 resource를 닫을 수(종료) 있는 새로운 접근 방식을 도입 했다. 그 후에 Java9의 try-with-resources는 코드를 작성하는 향상된 방법을 만들었고, 이제 간단하게 코드를 깔끔하고 명확하게 유지 할 수 있다.
@@ -188,6 +276,8 @@ MyHandler<?> handler = new MyHandler<>("One hundred"){
 ```
 
 # IV. 새로운 Core Libraries
+
+---
 
 ## 1. 프로세스 API (Process API)
 
@@ -602,6 +692,9 @@ List<String> newStrings = streamOptional()
 ```
 
 # V. 클라이언트 기술 (Client Technologies)
+
+---
+
 ## 1. 다중 해상도 이미지 (Multi-Resolution Images)
 
  `java.awt.image` 패키지에 정의된 새로운 API를 사용하면 다음과 같은 이점이 있음.
@@ -619,7 +712,11 @@ List<String> newStrings = streamOptional()
 기본 TIFF사향, Exif IFD, TIFF-F(RFC 2306) 파일, GeoTIFF IFD에서 볼 수 있는 공통 추가태크 및 태그 집한을 나타내는 일부 클래스.
 TIFFImageReadParam: 읽을 수 있는 메타 데이터 태그와 일부 대상 속성을 설정할 수 있는  ImageReadParam 의 확장.
 
+
 # VI. 국제화 (Internationalization)
+
+---
+
 ## 1. 유니코드 8.0 (Unicode 8.0)
 - Java 8 은 유니코드 6.2를 지원함.
 - Java 9 는 10,555자,  29개의 스크립트 및 42개 블록의 유니코드 8.0 표준을 지원한다.
